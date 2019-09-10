@@ -14,114 +14,21 @@
         user-scalable=no"
         />
     <title>공영 주차장 정보</title>
-   
 </head>
-<body>
-<p style="margin-top:-12px">
-    <b>Chrome은 https에서만 gps를 지원합니다.</b>
-</p>
-
-<div id="map" style="width:100%;height:600px;"></div>
-<div id="digit"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9855bc2bb7676dd0583ebe9e16061d8e"></script>
+	
 <script>
-var lat = "";
-var lon = "";
-
-
-var mapContainer = document.getElementById('map'),
-    mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도 중심좌표
-        level: 3
-    };
-
-var map = new daum.maps.Map(mapContainer, mapOption); //지도 생성
-
-if (navigator.geolocation) { //위치 정보 확인
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-       
-        lat = position.coords.latitude;    // 위도
-        lon = position.coords.longitude; // 경도
-       
-        var locPosition = new daum.maps.LatLng(lat, lon), //마커위치 얻어온 좌표로 생성
-         message = '<div style="padding:5px;width:220px;">'+ lat + ' / ' + lon +'</div>'; // 인포윈도우
-        displayMarker(locPosition, message);
-
-        var idGap = document.getElementById("digit");
-             idGap.innerHTML = "위도 : "+ lat +" , 경도 : " + lon;   
-      });
-   
-} else { //위치 정보 사용 못 할 때 표시
-   
-    var locPosition = new daum.maps.LatLng(33.450701, 126.570667),   
-        message = '위치 정보를 사용할 수 없습니다'
-       
-    displayMarker(locPosition, message);
-}
-
-function displayMarker(locPosition, message) { //마커생성
-    var marker = new daum.maps.Marker({ 
-        map: map,
-        position: locPosition
-    });
-   
-    var iwContent = message, // 인포윈도우 내용
-        iwRemoveable = true;
-    var infowindow = new daum.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    }); //인포윈도우 마커위에
-
-    infowindow.open(map, marker);
-    map.setCenter(locPosition);    //접속 위치로 좌표 변경 - 윈포 윈도우 내용 바꾸기
-}   
+	function image_onclick(){
+		var arrImage=new Array("v1.jpeg", "v2.jpeg", "v3.jpg");
+		var imgSource=document.targetImg;
+		var intRandom=Math.round(Math.random()*3);
+		while (imgSource.src.indexOf(arrImage[intRandom])!=-1){
+			intRandom=Math.round(Math.random()*3);
+		}
+		imgSource.src=arrImage[intRandom];
+	}
 </script>
-
+<body>
+	<IMAGE name="targetImg" src='v1.jpeg' onclick="image_onclick()">
 </body>
 </html>
 
-
-<!-- 처음 지도 출력하는 코드
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>공영 주차장!</title>
-</head>
-<body>
-	<div id="map" style="width:750px;height:350px;"></div>
-
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9855bc2bb7676dd0583ebe9e16061d8e"></script>
-	<script>
-		var mapContainer = document.getElementById('map'),
-		    mapOption = {
-		        center: new kakao.maps.LatLng(35.167050, 129.132590), // 지도중심좌표
-		        level: 3,
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP
-		    }; 
-        //지도 생성
-       
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-        //실시간교통
-		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
-        //지도 마커
-		var marker = new kakao.maps.Marker({
-		    position: new kakao.maps.LatLng(37.56542, 126.98375), // 마커의 좌표
-		    map: map // 마커 표시 지도
-		});
-		var infowindow = new kakao.maps.InfoWindow({
-		    content : '<div style="padding:5px;">주차장 정보</div>' //인포윈도우
-		});
-		infowindow.open(map, marker); //인포윈도우 표시
-		kakao.maps.event.addListener(marker, 'mouseover', function() {
-		    console.log('mouseover 이벤트'); //마커에 마우스오버 이벤트
-		});
-		kakao.maps.event.addListener(marker, 'mouseout', function() {
-		    console.log('mouseout 이벤트'); //마우스아웃 이벤트
-		});
-
-	</script>
-</body>
-</html>-->
