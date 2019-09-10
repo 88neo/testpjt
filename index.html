@@ -9,11 +9,11 @@
 	
 <script>
 	function image_onclick(){
-		var arrImage=new Array("v1.jpeg", "v2.jpeg", "v3.jpg", "v4.jpg");
+		var arrImage=new Array("v1.jpeg", "v2.jpeg");
 		var imgSource=document.targetImg;
-		var intRandom=Math.round(Math.random()*4);
+		var intRandom=Math.round(Math.random()*2);
 		while (imgSource.src.indexOf(arrImage[intRandom])!=-1){
-			intRandom=Math.round(Math.random()*4);
+			intRandom=Math.round(Math.random()*2);
 		}
 		imgSource.src=arrImage[intRandom];
 	}
