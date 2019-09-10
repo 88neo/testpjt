@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width; initial-scale=1.0">
-    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>눈 정화</title>
 </head>
 	
 <script>
 	function image_onclick(){
-		var arrImage=new Array("v1.jpeg", "v2.jpeg", "v3.jpeg");
+		var arrImage=new Array("v1.jpeg", "v2.jpeg", "v3.jpeg", "v4.jpeg");
 		var imgSource=document.targetImg;
-		var intRandom=Math.round(Math.random()*3);
+		var intRandom=Math.round(Math.random()*4);
 		while (imgSource.src.indexOf(arrImage[intRandom])!=-1){
-			intRandom=Math.round(Math.random()*3);
+			intRandom=Math.round(Math.random()*4);
 		}
 		imgSource.src=arrImage[intRandom];
 	}
